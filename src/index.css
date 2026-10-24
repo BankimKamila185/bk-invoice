@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    border-color: #27272a;
+  }
+}
+
+.font-script {
+  font-family: 'Playball', 'Alex Brush', 'Dancing Script', 'Great Vibes', cursive;
+}
+
+.font-invoice-body {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #18181b;
+}
+::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
+
+/* Print Styles */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 6mm 6mm;
+  }
+
+  html,
+  body {
+    background: transparent !important;
+    color: black !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Completely remove UI elements so they take 0 height */
+  nav,
+  aside,
+  header,
+  button,
+  .no-print,
+  .no-print * {
+    display: none !important;
+  }
+
+  /* Reset layout flex/height wrappers */
+  #root,
+  .min-h-screen,
+  .lg\:pl-64,
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+  /* Modal overlay reset during print */
+  .modal-overlay-print {
+    position: static !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    display: block !important;
+    overflow: visible !important;
+  }
+
+  .modal-box-print {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+  }
+
+  /* Exact single-page invoice formatting */
+  .invoice-printable {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 278mm !important;
+    min-height: 278mm !important;
+    max-height: 278mm !important;
+    margin: 0 !important;
+    padding: 16px 20px !important;
+    box-shadow: none !important;
+    border: 2px solid currentColor !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    page-break-after: avoid !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
