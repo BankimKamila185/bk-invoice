@@ -1,0 +1,11 @@
+services:
+  invoice-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bk-invoice
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
