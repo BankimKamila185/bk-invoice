@@ -95,6 +95,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         if (parsed.gstin === '27AAECK1234F1Z5') {
           parsed.gstin = '';
         }
+        // Ensure Aadhaar is enabled by default
+        if (parsed.showAadhar === false && (!parsed.aadhar || parsed.aadhar === '718468807879')) {
+          parsed.showAadhar = true;
+          parsed.aadhar = parsed.aadhar || '718468807879';
+        }
         return { ...initialBusinessProfile, ...parsed };
       }
       return initialBusinessProfile;
@@ -206,11 +211,24 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       if (saved) {
         const parsed: Invoice[] = JSON.parse(saved);
         return parsed.map((inv) => {
-          if (inv.business?.gstin === '27AAECK1234F1Z5') {
-            return {
-              ...inv,
-              business: { ...inv.business, gstin: '' },
-            };
+          let updatedBusiness = inv.business;
+          if (updatedBusiness) {
+            let changed = false;
+            if (updatedBusiness.gstin === '27AAECK1234F1Z5') {
+              updatedBusiness = { ...updatedBusiness, gstin: '' };
+              changed = true;
+            }
+            if (!updatedBusiness.showAadhar) {
+              updatedBusiness = {
+                ...updatedBusiness,
+                showAadhar: true,
+                aadhar: updatedBusiness.aadhar || '718468807879',
+              };
+              changed = true;
+            }
+            if (changed) {
+              return { ...inv, business: updatedBusiness };
+            }
           }
           return inv;
         });

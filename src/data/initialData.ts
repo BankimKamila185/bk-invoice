@@ -8,7 +8,7 @@ export const initialBusinessProfile: BusinessProfile = {
   pan: 'BMPPK9569J',
   gstin: '',
   aadhar: '718468807879',
-  showAadhar: false, // Sensible privacy default: disabled by default
+  showAadhar: true, // Enabled Aadhaar on invoice header
   addressLine1: '10, Shanti Niwas, Sai darshan Chl. 8',
   addressLine2: 'Laxman Nagar, Anand Wadi, Kurar Village',
   landmark: 'Near Shiv Mandir, Malad (e)',

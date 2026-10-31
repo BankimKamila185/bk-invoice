@@ -56,11 +56,20 @@ export const InvoiceEditor: React.FC<InvoiceEditorProps> = ({
 
   const [invoice, setInvoice] = useState<Invoice>(() => {
     if (existingInvoice) {
-      if (existingInvoice.business?.gstin === '27AAECK1234F1Z5') {
-        return {
-          ...existingInvoice,
-          business: { ...existingInvoice.business, gstin: '' },
-        };
+      let b = existingInvoice.business;
+      if (b) {
+        let changed = false;
+        if (b.gstin === '27AAECK1234F1Z5') {
+          b = { ...b, gstin: '' };
+          changed = true;
+        }
+        if (!b.showAadhar) {
+          b = { ...b, showAadhar: true, aadhar: b.aadhar || '718468807879' };
+          changed = true;
+        }
+        if (changed) {
+          return { ...existingInvoice, business: b };
+        }
       }
       return existingInvoice;
     }

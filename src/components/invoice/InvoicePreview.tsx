@@ -63,7 +63,7 @@ export const InvoicePreview: React.FC<InvoicePreviewProps> = ({
           <div className="font-bold text-[15px]">{invoice.business.businessName || invoice.business.ownerName}</div>
           {invoice.business.phone && <div>Mob no. {invoice.business.phone}</div>}
           {invoice.business.pan && <div>Pan no. {invoice.business.pan}</div>}
-          {invoice.business.showAadhar && invoice.business.aadhar && (
+          {invoice.business.showAadhar !== false && invoice.business.aadhar && (
             <div>Aadhar. {invoice.business.aadhar}</div>
           )}
           

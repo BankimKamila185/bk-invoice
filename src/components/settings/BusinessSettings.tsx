@@ -285,10 +285,10 @@ export const BusinessSettings: React.FC = () => {
                 <div>
                   <span className="font-bold text-white flex items-center gap-1.5">
                     <Lock className="w-3.5 h-3.5 text-zinc-400" />
-                    Optional Aadhaar Number (Privacy Protected)
+                    Aadhaar Number
                   </span>
                   <p className="text-[11px] text-zinc-500 mt-0.5">
-                    Disabled by default. Only enable if required for local compliance or municipal permits.
+                    Displays on invoice header under Mob no. and Pan no.
                   </p>
                 </div>
                 <label className="relative inline-flex items-center cursor-pointer">
