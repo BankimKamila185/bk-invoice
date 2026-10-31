@@ -55,7 +55,15 @@ export const InvoiceEditor: React.FC<InvoiceEditorProps> = ({
     : null;
 
   const [invoice, setInvoice] = useState<Invoice>(() => {
-    if (existingInvoice) return existingInvoice;
+    if (existingInvoice) {
+      if (existingInvoice.business?.gstin === '27AAECK1234F1Z5') {
+        return {
+          ...existingInvoice,
+          business: { ...existingInvoice.business, gstin: '' },
+        };
+      }
+      return existingInvoice;
+    }
 
     const today = new Date().toISOString().split('T')[0];
     const dueDate = new Date(Date.now() + 15 * 86400000).toISOString().split('T')[0];

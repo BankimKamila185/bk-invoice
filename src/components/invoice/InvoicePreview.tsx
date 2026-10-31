@@ -72,7 +72,9 @@ export const InvoicePreview: React.FC<InvoicePreviewProps> = ({
             {invoice.business.addressLine2 && <div>{invoice.business.addressLine2}</div>}
             {invoice.business.landmark && <div>{invoice.business.landmark}</div>}
             {invoice.business.cityStatePin && <div>{invoice.business.cityStatePin}</div>}
-            {invoice.business.gstin && <div className="text-[12px] opacity-90 mt-1">GSTIN: {invoice.business.gstin}</div>}
+            {invoice.business.gstin?.trim() ? (
+              <div className="text-[12px] opacity-90 mt-1">GSTIN: {invoice.business.gstin}</div>
+            ) : null}
           </div>
         </div>
       </div>

@@ -232,7 +232,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
             </div>
             <div>
               <div className="text-sm font-bold text-white">Business Profile</div>
-              <div className="text-xs text-zinc-400">GST, Bank & Template setup</div>
+              <div className="text-xs text-zinc-400">Profile, Bank & Template setup</div>
             </div>
           </div>
           <ArrowRight className="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors" />

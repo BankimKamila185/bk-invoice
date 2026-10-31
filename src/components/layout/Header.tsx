@@ -25,11 +25,11 @@ export const Header: React.FC<HeaderProps> = ({ onToggleSidebar }) => {
           <span className="font-bold text-white tracking-wide truncate max-w-[200px] sm:max-w-xs">
             {businessProfile.businessName || 'My Business'}
           </span>
-          {businessProfile.gstin && (
+          {businessProfile.gstin?.trim() ? (
             <span className="hidden md:inline-block text-[10px] bg-zinc-900 border border-zinc-800 px-2 py-0.5 rounded text-zinc-400 font-mono">
               {businessProfile.gstin}
             </span>
-          )}
+          ) : null}
         </div>
       </div>
 

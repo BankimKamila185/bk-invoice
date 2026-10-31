@@ -109,7 +109,7 @@ export const BusinessSettings: React.FC = () => {
             <span>Business Profile & Settings</span>
           </h1>
           <p className="text-sm text-zinc-400 mt-1">
-            Configure header details, GSTIN, bank credentials and data backups
+            Configure header details, bank credentials and data backups
           </p>
         </div>
 
@@ -266,14 +266,14 @@ export const BusinessSettings: React.FC = () => {
 
                 <div>
                   <label className="block font-medium text-zinc-400 mb-1">
-                    GSTIN
+                    GSTIN (Optional)
                   </label>
                   <input
                     type="text"
-                    value={form.gstin}
+                    value={form.gstin || ''}
                     onChange={(e) => setForm({ ...form, gstin: e.target.value })}
                     className="w-full bg-zinc-950 border border-zinc-700 rounded-lg px-3 py-2 text-white uppercase focus:outline-none focus:border-amber-500"
-                    placeholder="e.g. 27AAECK1234F1Z5"
+                    placeholder="Optional (leave blank if not registered)"
                   />
                 </div>
               </div>

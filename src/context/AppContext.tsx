@@ -90,7 +90,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [businessProfile, setBusinessProfile] = useState<BusinessProfile>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEYS.BUSINESS);
-      return saved ? JSON.parse(saved) : initialBusinessProfile;
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed.gstin === '27AAECK1234F1Z5') {
+          parsed.gstin = '';
+        }
+        return { ...initialBusinessProfile, ...parsed };
+      }
+      return initialBusinessProfile;
     } catch {
       return initialBusinessProfile;
     }
@@ -196,7 +203,19 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [invoices, setInvoices] = useState<Invoice[]>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEYS.INVOICES);
-      return saved ? JSON.parse(saved) : initialInvoices;
+      if (saved) {
+        const parsed: Invoice[] = JSON.parse(saved);
+        return parsed.map((inv) => {
+          if (inv.business?.gstin === '27AAECK1234F1Z5') {
+            return {
+              ...inv,
+              business: { ...inv.business, gstin: '' },
+            };
+          }
+          return inv;
+        });
+      }
+      return initialInvoices;
     } catch {
       return initialInvoices;
     }

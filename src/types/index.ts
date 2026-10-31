@@ -18,7 +18,7 @@ export interface BusinessProfile {
   phone: string;
   email: string;
   pan: string;
-  gstin: string;
+  gstin?: string;
   aadhar?: string;
   showAadhar: boolean;
   addressLine1: string;

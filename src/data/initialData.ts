@@ -6,7 +6,7 @@ export const initialBusinessProfile: BusinessProfile = {
   phone: '9821405448',
   email: 'himangshu.kamila@gmail.com',
   pan: 'BMPPK9569J',
-  gstin: '27AAECK1234F1Z5',
+  gstin: '',
   aadhar: '718468807879',
   showAadhar: false, // Sensible privacy default: disabled by default
   addressLine1: '10, Shanti Niwas, Sai darshan Chl. 8',
