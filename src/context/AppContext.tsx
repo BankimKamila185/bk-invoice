@@ -167,7 +167,23 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [products, setProducts] = useState<Product[]>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEYS.PRODUCTS);
-      return saved ? JSON.parse(saved) : initialProducts;
+      if (saved) {
+        const parsed: Product[] = JSON.parse(saved);
+        // Automatically sync any missing necklace products from initialProducts into existing localStorage
+        const existingNames = new Set(parsed.map((p) => p.name.trim().toLowerCase()));
+        const missingFromInitial = initialProducts.filter(
+          (initP) => !existingNames.has(initP.name.trim().toLowerCase())
+        );
+        if (missingFromInitial.length > 0) {
+          const merged = [...missingFromInitial, ...parsed];
+          try {
+            localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(merged));
+          } catch {}
+          return merged;
+        }
+        return parsed;
+      }
+      return initialProducts;
     } catch {
       return initialProducts;
     }
